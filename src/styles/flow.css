@@ -1,0 +1,63 @@
+/* Flow diagram styles: edge kinds, dot colours, nodes, dashed optional nodes, selection. */
+/* Dot motion comes only from useAnimationClock; no keyframes move data dots (S12). */
+/* Transitions are used for hover and selection only. Dash patterns are set on the paths. */
+.flow-diagram { width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0.5rem; }
+.flow-svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* Edges: colour by kind; dash pattern also differs, so colour is never the only signal. */
+.flow-edge-path { stroke-width: 2.5; transition: stroke-width 0.2s ease, opacity 0.2s ease; }
+.flow-edge--flow .flow-edge-path { stroke: var(--accent); }
+.flow-edge--feedback .flow-edge-path { stroke: var(--feedback); stroke-width: 3; }
+.flow-edge--query .flow-edge-path { stroke: var(--query); }
+.flow-edge-arrow { transition: opacity 0.2s ease; }
+.flow-edge--flow .flow-edge-arrow { fill: var(--accent); }
+.flow-edge--feedback .flow-edge-arrow { fill: var(--feedback); }
+.flow-edge--query .flow-edge-arrow { fill: var(--query); }
+.flow-edge--highlighted .flow-edge-path { stroke-width: 5; }
+.flow-edge--feedback.flow-edge--highlighted .flow-edge-path { stroke-width: 5.5; }
+
+/* Data dots take the colour of their edge's kind. */
+.flow-dot { stroke: var(--surface); stroke-width: 1.5; }
+.flow-dot--flow { fill: var(--accent); }
+.flow-dot--feedback { fill: var(--feedback); }
+.flow-dot--query { fill: var(--query); }
+
+/* Nodes: keyboard-focusable SVG groups with a visible focus ring. */
+.flow-node { cursor: pointer; outline: none; }
+.flow-node-box { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5;
+  transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease; }
+.flow-node:hover .flow-node-box { fill: var(--accent-soft); stroke: var(--accent); }
+.flow-node-title { fill: var(--text); font-size: 12.5px; font-weight: 600; pointer-events: none; }
+
+/* Optional stage (community summaries): dashed outline, set on the rect; lighter fill here. */
+.flow-node--optional .flow-node-box { fill: var(--bg); stroke: var(--muted); }
+.flow-node--optional .flow-node-title { font-style: italic; }
+
+/* Selected node: highlight ring plus stronger box stroke. */
+.flow-node--selected .flow-node-box { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; }
+.flow-node-ring { stroke: var(--focus); stroke-width: 2.5; }
+
+/* Keyboard focus: SVG groups do not show outlines reliably, so mark the box instead. */
+.flow-node:focus-visible .flow-node-box { stroke: var(--focus); stroke-width: 3.5; }
+.flow-node:focus-visible .flow-node-title { text-decoration: underline; }
+
+/* The single decorative focus pulse, on the selected node's ring only. */
+@keyframes flow-ring-pulse {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.4; }
+}
+.flow-node--selected .flow-node-ring { animation: flow-ring-pulse 1.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-node--selected .flow-node-ring { animation: none; }
+  .flow-edge-path, .flow-edge-arrow, .flow-node-box { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .flow-edge-path { stroke: CanvasText; }
+  .flow-edge-arrow, .flow-dot { fill: CanvasText; }
+  .flow-node-box { stroke: CanvasText; }
+  .flow-node-title { fill: CanvasText; }
+  .flow-node-ring { stroke: Highlight; }
+}

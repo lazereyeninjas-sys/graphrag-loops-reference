@@ -1,0 +1,62 @@
+/* Base styles: type, colour contrast (WCAG AA), shell, badges, claims, buttons, focus rings. */
+/* System fonts only; no remote fonts or assets. Transitions on hover and selection only. */
+:root {
+  --bg: #f7f8fa; --surface: #ffffff; --text: #1b1f24; --muted: #4a5360; --border: #c9d0d9;
+  --accent: #1d4ed8; --accent-soft: #e0e8fb; --feedback: #b4400f; --query: #5b4bb0;
+  --warn-bg: #fff3d6; --warn-text: #6b4200; --warn-border: #c98a00;
+  --neutral-bg: #e9edf2; --neutral-text: #2f3742; --focus: #0b57d0;
+  --radius: 8px; --gap: 1rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px; line-height: 1.5; color: var(--text); background: var(--bg);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; color: var(--text); background: var(--bg); }
+h1, h2, h3 { line-height: 1.25; margin: 0 0 0.5rem; }
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
+p { margin: 0 0 0.6rem; }
+ul, ol { margin: 0 0 0.6rem; padding-left: 1.2rem; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em;
+  background: var(--neutral-bg); padding: 0 0.25rem; border-radius: 4px; word-break: break-all; }
+.app { min-height: 100vh; }
+.app-main { max-width: 1200px; margin: 0 auto; padding: var(--gap); }
+.nav-header { background: var(--surface); border-bottom: 1px solid var(--border); }
+.nav-bar { max-width: 1200px; margin: 0 auto; padding: 0.6rem var(--gap);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap); }
+.nav-title { font-weight: 700; margin-right: auto; }
+.nav-list { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.nav-link { display: inline-block; padding: 0.35rem 0.75rem; border-radius: var(--radius);
+  color: var(--accent); text-decoration: none; transition: background-color 0.15s ease; }
+.nav-link:hover { background: var(--accent-soft); }
+.nav-link--active { background: var(--accent); color: #ffffff; font-weight: 600; }
+.nav-link--active:hover { background: var(--accent); }
+button { font: inherit; color: inherit; cursor: pointer; }
+.play-pause { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem;
+  border: 1px solid var(--accent); border-radius: var(--radius); background: var(--surface);
+  color: var(--accent); transition: background-color 0.15s ease; }
+.play-pause:hover { background: var(--accent-soft); }
+.play-pause--playing { background: var(--accent); color: #ffffff; }
+.play-pause--playing:hover { background: var(--accent); }
+.play-pause-icon { fill: currentColor; }
+.label-badge { display: inline-block; padding: 0 0.45rem; border-radius: 999px; font-size: 0.75rem;
+  font-weight: 600; line-height: 1.5; border: 1px solid transparent; white-space: nowrap; vertical-align: baseline; }
+.label-badge--warning { background: var(--warn-bg); color: var(--warn-text); border-color: var(--warn-border); }
+.label-badge--neutral { background: var(--neutral-bg); color: var(--neutral-text); border-color: var(--border); }
+.label-badge--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
+.claim { display: inline; }
+.claim-sources { color: var(--muted); font-size: 0.9em; }
+.claim-info-toggle { margin-left: 0.15rem; padding: 0 0.35rem; font-size: 0.75rem; color: var(--muted);
+  background: transparent; border: 1px solid var(--border); border-radius: 4px;
+  transition: border-color 0.15s ease, color 0.15s ease; }
+.claim-info-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.claim-urls { display: block; margin-top: 0.25rem; padding: 0.35rem 0.5rem;
+  background: var(--surface); border: 1px dashed var(--border); border-radius: 4px; }
+.claim-url { display: block; font-size: 0.85rem; color: var(--muted); }
+.claim-url-name { font-weight: 600; color: var(--text); }
+:focus { outline: none; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+h1[tabindex='-1']:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
+}
