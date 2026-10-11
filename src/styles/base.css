@@ -1,18 +1,18 @@
 /* Base styles: type, colour contrast (WCAG AA), shell, badges, claims, buttons, focus rings. */
 /* System fonts only; no remote fonts or assets. Transitions on hover and selection only. */
 :root {
-  --bg: #f7f8fa; --surface: #ffffff; --text: #1b1f24; --muted: #4a5360; --border: #c9d0d9;
-  --accent: #1d4ed8; --accent-soft: #e0e8fb; --feedback: #b4400f; --query: #5b4bb0;
-  --warn-bg: #fff3d6; --warn-text: #6b4200; --warn-border: #c98a00;
-  --neutral-bg: #e9edf2; --neutral-text: #2f3742; --focus: #0b57d0;
-  --radius: 8px; --gap: 1rem;
+  --bg: #000000; --surface: #0d0d0f; --raised: #161618; --text: #f2f2f2; --muted: #a1a1a6; --border: #2a2a2d;
+  --accent: #ff5c74; --accent-fill: #c81e3a; --on-accent: #ffffff; --accent-soft: #2f1017; --feedback: #f0a54a; --query: #7aa7ff;
+  --warn-bg: #2a1d05; --warn-text: #ffd27a; --warn-border: #c98a00;
+  --neutral-bg: #1b1b1e; --neutral-text: #d6d6da; --focus: #ffffff; --glow: rgba(200, 30, 58, 0.35);
+  --radius: 8px; --gap: 1rem; color-scheme: dark;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px; line-height: 1.5; color: var(--text); background: var(--bg);
 }
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; color: var(--text); background: var(--bg); }
 h1, h2, h3 { line-height: 1.25; margin: 0 0 0.5rem; }
-h1 { font-size: 1.75rem; }
+h1 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
 h2 { font-size: 1.25rem; }
 h3 { font-size: 1rem; }
 p { margin: 0 0 0.6rem; }
@@ -24,20 +24,20 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 .nav-header { background: var(--surface); border-bottom: 1px solid var(--border); }
 .nav-bar { max-width: 1200px; margin: 0 auto; padding: 0.6rem var(--gap);
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap); }
-.nav-title { font-weight: 700; margin-right: auto; }
+.nav-title { font-weight: 700; margin-right: auto; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
 .nav-list { display: flex; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
 .nav-link { display: inline-block; padding: 0.35rem 0.75rem; border-radius: var(--radius);
   color: var(--accent); text-decoration: none; transition: background-color 0.15s ease; }
 .nav-link:hover { background: var(--accent-soft); }
-.nav-link--active { background: var(--accent); color: #ffffff; font-weight: 600; }
-.nav-link--active:hover { background: var(--accent); }
+.nav-link--active { background: var(--accent-fill); color: var(--on-accent); font-weight: 600; box-shadow: 0 0 12px var(--glow); }
+.nav-link--active:hover { background: var(--accent-fill); }
 button { font: inherit; color: inherit; cursor: pointer; }
 .play-pause { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem;
   border: 1px solid var(--accent); border-radius: var(--radius); background: var(--surface);
   color: var(--accent); transition: background-color 0.15s ease; }
 .play-pause:hover { background: var(--accent-soft); }
-.play-pause--playing { background: var(--accent); color: #ffffff; }
-.play-pause--playing:hover { background: var(--accent); }
+.play-pause--playing { background: var(--accent-fill); color: var(--on-accent); }
+.play-pause--playing:hover { background: var(--accent-fill); }
 .play-pause-icon { fill: currentColor; }
 .label-badge { display: inline-block; padding: 0 0.45rem; border-radius: 999px; font-size: 0.75rem;
   font-weight: 600; line-height: 1.5; border: 1px solid transparent; white-space: nowrap; vertical-align: baseline; }
@@ -51,7 +51,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   transition: border-color 0.15s ease, color 0.15s ease; }
 .claim-info-toggle:hover { color: var(--accent); border-color: var(--accent); }
 .claim-urls { display: block; margin-top: 0.25rem; padding: 0.35rem 0.5rem;
-  background: var(--surface); border: 1px dashed var(--border); border-radius: 4px; }
+  background: var(--raised); border: 1px dashed var(--border); border-radius: 4px; }
 .claim-url { display: block; font-size: 0.85rem; color: var(--muted); }
 .claim-url-name { font-weight: 600; color: var(--text); }
 :focus { outline: none; }

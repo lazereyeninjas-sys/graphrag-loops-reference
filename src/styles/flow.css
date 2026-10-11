@@ -35,7 +35,7 @@
 .flow-node--optional .flow-node-title { font-style: italic; }
 
 /* Selected node: highlight ring plus stronger box stroke. */
-.flow-node--selected .flow-node-box { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; }
+.flow-node--selected .flow-node-box { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; filter: drop-shadow(0 0 6px var(--glow)); }
 .flow-node-ring { stroke: var(--focus); stroke-width: 2.5; }
 
 /* Keyboard focus: SVG groups do not show outlines reliably, so mark the box instead. */
